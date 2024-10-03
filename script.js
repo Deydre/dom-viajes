@@ -1,33 +1,58 @@
+// Banner COntainer
+let bannerContainer = document.querySelector("#bannerContainer")
 
-// Pegar img al final del primer section
-let containerImg1 = document.querySelector("section:first-child")
+// Crear img y su URL
+const imgBanner = document.createElement('img');
+imgBanner.src = 'banner/1.jpg';
 
-containerImg1.innerHTML += `<img src="banner/1.jpg" alt="Puesta de sol sobre el mar">`;
+// Agregar la imagen al contenedor del banner
+bannerContainer.appendChild(imgBanner);
 
-// Pegar imgs en el primer div de cada article
-let containerImg2 = document.querySelector("section article div:first-child");
-let containerImg3 = document.querySelector("section article:nth-child(2) div");
-let containerImg4 = document.querySelector("section article:last-child div");
+let imgsArray = ['/viajes/viajes-1.jpg','/viajes/viajes-2.jpg', '/viajes/viajes-3.jpg' ];
 
-containerImg2.innerHTML += `<img src="viajes/viajes-1.jpg" alt="Playa">`;
-containerImg3.innerHTML += `<img src="viajes/viajes-2.jpg" alt="Paraíso">`;
-containerImg4.innerHTML += `<img src="viajes/viajes-3.jpg" alt="Señales">`;
+// Crear y poner las imgs
+imgsArray.forEach((imagen, i) => {
+  // Crear 1 img
+  const img = document.createElement('img');
+  // Poner la URL
+  img.src = imagen;
+  // Meter en su Container
+  document.querySelector(`#img${i+1}Container`).appendChild(img);
+});
 
-// Crear selector al final del último section
+// Crear un array con todas las opciones
+let optionsArray = ["La Palma", "Tenerife", "Lanzarote", "El Hierro", "Fuerteventura", "Gran Canaria", "La Gomera", "La Graciosa"];
 
-let containerSelector = document.querySelector("main section:last-child");
+// Crear el elemento "select"
+let selector = document.createElement("select"); // Crea el elemento <select>
+selector.id = "destinationSelect"; // Asigna un ID si lo necesitas
 
-containerSelector.innerHTML += 
-`
-<select name="select">
-  <option value="LaPalma" selected>La Palma</option>
-  <option value="Tenerife">Tenerife</option>
-  <option value="Lanzarote">Lanzarote</option>
-  <option value="ElHierro">El Hierro</option>
-  <option value="Fuerteventura">Fuerteventura</option>
-  <option value="GranCanaria">Gran Canaria</option>
-  <option value="LaGomera">La Gomera</option>
-  <option value="LaGraciosa">La Graciosa</option>
-</select>
-`
+// Agregar las opciones al select
+optionsArray.forEach((option) => {
+  // Crear option
+  const currentOption = document.createElement('option');
+  // Poner el value (eliminando espacios)
+  currentOption.value = option.replace(/\s+/g, ''); // Reemplaza espacios en la variable option
+  // Poner el texto
+  currentOption.textContent = option; // Aquí estableces el texto de la opción
+  // Meter en el select
+  selector.appendChild(currentOption); // Agrega currentOption al select
+});
+
+// Añadir el select al contenedor
+document.querySelector("#selectorContainer").appendChild(selector); // Agregar el <select> al contenedor
+
+
+// `
+// <select name="select">
+//   <option value="LaPalma" selected>La Palma</option>
+//   <option value="Tenerife">Tenerife</option>
+//   <option value="Lanzarote">Lanzarote</option>
+//   <option value="ElHierro">El Hierro</option>
+//   <option value="Fuerteventura">Fuerteventura</option>
+//   <option value="GranCanaria">Gran Canaria</option>
+//   <option value="LaGomera">La Gomera</option>
+//   <option value="LaGraciosa">La Graciosa</option>
+// </select>
+// `
 
